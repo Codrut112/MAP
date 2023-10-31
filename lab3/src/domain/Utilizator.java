@@ -4,21 +4,25 @@ import java.util.List;
 import java.util.Objects;
 
 public class Utilizator extends Entity<Long> {
+    //firstname
     private String firstName;
+    //lastname
     private String lastName;
+    private static long contor=0;
 
     /**
      * construnctor
+     *
      * @param firstName String
      * @param lastName  String
      */
     public Utilizator(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.setId(contor++);
     }
 
     /**
-     *
      * @return the firstname
      */
     public String getFirstName() {
@@ -27,6 +31,7 @@ public class Utilizator extends Entity<Long> {
 
     /**
      * set the firstName
+     *
      * @param firstName String
      */
     public void setFirstName(String firstName) {
@@ -35,6 +40,7 @@ public class Utilizator extends Entity<Long> {
 
     /**
      * return LastName
+     *
      * @return String
      */
     public String getLastName() {
@@ -43,6 +49,7 @@ public class Utilizator extends Entity<Long> {
 
     /**
      * set lastname
+     *
      * @param lastName String
      */
     public void setLastName(String lastName) {
@@ -52,6 +59,7 @@ public class Utilizator extends Entity<Long> {
 
     /**
      * override toString
+     *
      * @return String
      */
     @Override
@@ -59,12 +67,13 @@ public class Utilizator extends Entity<Long> {
         return "Utilizator{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                " id= " + id+
+                " id= " + id +
                 '}';
     }
 
     /**
      * override equals
+     *
      * @param o Object
      * @return boolean
      */
@@ -74,12 +83,13 @@ public class Utilizator extends Entity<Long> {
         if (!(o instanceof Utilizator)) return false;
         Utilizator that = (Utilizator) o;
         return getFirstName().equals(that.getFirstName()) &&
-                getLastName().equals(that.getLastName()) ;
+                getLastName().equals(that.getLastName());
 
     }
 
     /**
      * override hashcode
+     *
      * @return int
      */
     @Override

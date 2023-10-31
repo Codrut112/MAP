@@ -12,12 +12,12 @@ import java.util.Map;
 import java.util.Optional;
 
 public class InMemoryRepository<ID, E extends Entity<ID>> implements Repository<ID,E> {
-    private Validator<E> validator;
+    private final Validator<E> validator;
     Map<ID,E> entities;
 
     /**
-     * constructer
-     * @param validator Validator<E> (generic)
+     * constructor
+     * @param validator
      */
     public InMemoryRepository(Validator<E> validator) {
         this.validator = validator;
@@ -32,15 +32,16 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements Repository<
      *
      */
     @Override
-    public E findOne(ID id){
+    public Optional<E> findOne(ID id){
         if (id==null)
             throw new Error("id must be not null");
-        return entities.get(id);
+       // System.out.println(entities.get(id));
+        return Optional.ofNullable(entities.get(id));
     }
 
     /**
-     * return an iterable of entities
-     * @return Iterable<E>
+     *
+     * @return lista de entitati
      */
     @Override
     public Iterable<E> findAll() {
@@ -56,15 +57,15 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements Repository<
      *         the enetity if the entity is already in the repo
      */
     @Override
-    public E save(E entity) {
+    public Optional<E> save(E entity) {
         if (entity==null)
             throw new Error("entity must be not null");
         validator.validate(entity);
         if(entities.get(entity.getId()) != null) {
-            return entity;
+            return Optional.empty();
         }
         else entities.put(entity.getId(),entity);
-        return null;
+        return Optional.of(entity);
     }
 
     /**
@@ -75,9 +76,9 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements Repository<
      *         return null otherwise
      */
     @Override
-    public E delete(ID id) {
+    public Optional<E> delete(ID id) {
 
-       return entities.remove(id);
+       return Optional.ofNullable(entities.remove(id));
 
     }
 
@@ -89,7 +90,7 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements Repository<
      *         null otherwise
      */
     @Override
-    public E update(E entity) {
+    public Optional<E> update(E entity) {
 
         if(entity == null)
             throw new Error("entity must be not null!");
@@ -99,9 +100,9 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements Repository<
 
         if(entities.get(entity.getId()) != null) {
             entities.put(entity.getId(),entity);
-            return null;
+            return Optional.empty();
         }
-        return entity;
+        return Optional.of(entity);
 
     }
 

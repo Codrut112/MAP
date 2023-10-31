@@ -5,6 +5,7 @@ import java.util.Objects;
 
 /**
  * Define a Tuple o generic type entities
+ *
  * @param <E1> - tuple first entity type
  * @param <E2> - tuple second entity type
  */
@@ -14,6 +15,7 @@ public class Tuple<E1, E2> {
 
     /**
      * constructor
+     *
      * @param e1 tuple first entity type
      * @param e2 tuple second entity type
      */
@@ -23,7 +25,6 @@ public class Tuple<E1, E2> {
     }
 
     /**
-     *
      * @return tuple first entity type
      */
     public E1 getLeft() {
@@ -32,13 +33,14 @@ public class Tuple<E1, E2> {
 
     /**
      * set tuple first entity value
+     *
      * @param e1 E1
      */
     public void setLeft(E1 e1) {
         this.e1 = e1;
     }
+
     /**
-     *
      * @return tuple second entity type
      */
     public E2 getRight() {
@@ -47,6 +49,7 @@ public class Tuple<E1, E2> {
 
     /**
      * set tuple second entity value
+     *
      * @param e2 E2
      */
     public void setRight(E2 e2) {
@@ -55,6 +58,7 @@ public class Tuple<E1, E2> {
 
     /**
      * override toString
+     *
      * @return String
      */
     @Override
@@ -65,6 +69,7 @@ public class Tuple<E1, E2> {
 
     /**
      * override equals
+     *
      * @param obj Object
      * @return
      */
@@ -75,6 +80,7 @@ public class Tuple<E1, E2> {
 
     /**
      * override hashCode
+     *
      * @return int
      */
     @Override

@@ -4,14 +4,17 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 
-public class Prietenie extends Entity<Tuple<Long,Long>> {
-
+public class Prietenie extends Entity<Tuple<Long, Long>> {
+    //data la care prietenia a inceput
     LocalDateTime date;
+    //id primul prieten
     private long idPrieten1;
+    //id al doilea prieten
     private long idPrieten2;
 
     /**
      * ovverride toString
+     *
      * @return String
      */
     @Override
@@ -20,26 +23,26 @@ public class Prietenie extends Entity<Tuple<Long,Long>> {
                 "date=" + date +
                 ", idPrieten1=" + idPrieten1 +
                 ", idPrieten2=" + idPrieten2 +
-                  " id:" +id+
+                " id:" + id +
                 '}';
     }
 
     /**
      * construnctor Prietenie
-     * @param date LocalDateTime
+     *
+     * @param date       LocalDateTime
      * @param idPrieten1 long
      * @param idPrieten2 long
      */
     public Prietenie(LocalDateTime date, long idPrieten1, long idPrieten2) {
-         this.date = date;
-         this.idPrieten1=idPrieten1;
-         this.idPrieten2=idPrieten2;
-         this.setId(new Tuple(idPrieten1,idPrieten2));
+        this.date = date;
+        this.idPrieten1 = idPrieten1;
+        this.idPrieten2 = idPrieten2;
+        this.setId(new Tuple(idPrieten1, idPrieten2));
     }
 
 
     /**
-     *
      * @return the date when the friendship was created
      */
     public LocalDateTime getDate() {
@@ -48,6 +51,7 @@ public class Prietenie extends Entity<Tuple<Long,Long>> {
 
     /**
      * override equals
+     *
      * @param o Object
      * @return boolean
      */
@@ -56,11 +60,12 @@ public class Prietenie extends Entity<Tuple<Long,Long>> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Prietenie prietenie = (Prietenie) o;
-        return ((idPrieten1 == prietenie.idPrieten1 && idPrieten2 == prietenie.idPrieten2) || (idPrieten1 == prietenie.idPrieten2 && idPrieten2 == prietenie.idPrieten1)) ;
+        return ((idPrieten1 == prietenie.idPrieten1 && idPrieten2 == prietenie.idPrieten2) || (idPrieten1 == prietenie.idPrieten2 && idPrieten2 == prietenie.idPrieten1));
     }
 
     /**
      * override hashcode
+     *
      * @return int
      */
     @Override
@@ -70,24 +75,26 @@ public class Prietenie extends Entity<Tuple<Long,Long>> {
 
     /**
      * verifica daca un utilizator face parte din relatie de prietenie
+     *
      * @param idUtlizator long
      * @return long - id-ul celuilalt prieten daca face parte din prietenie
-     *                -1 in caz contrar
+     * -1 in caz contrar
      */
-    public long prietenComun(long idUtlizator){
-        if(this.idPrieten1==idUtlizator) return this.idPrieten2;
-        if(this.idPrieten2==idUtlizator) return this.idPrieten1;
+    public long prietenComun(long idUtlizator) {
+        if (this.idPrieten1 == idUtlizator) return this.idPrieten2;
+        if (this.idPrieten2 == idUtlizator) return this.idPrieten1;
 
-        return  -1;
+        return -1;
     }
 
     /**
      * verifica daca utilizatorul face parte din prietenie
+     *
      * @param idUtilizator long
      * @return boolean
      */
     public boolean memberOf(long idUtilizator) {
 
-        return this.idPrieten1==idUtilizator || idPrieten2==idUtilizator;
+        return this.idPrieten1 == idUtilizator || idPrieten2 == idUtilizator;
     }
 }
